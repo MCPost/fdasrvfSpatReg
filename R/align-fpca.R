@@ -141,7 +141,7 @@ align_fPCA <- function(f, time,
   qhat <- matrix(mq, nrow = M, ncol = N) + tmp
 
   # Matching Step
-  gam_k <- foreach::foreach(k = 1:N, .combine = cbind, .packages="fdasrvf") %dopar% {
+  gam_k <- foreach::foreach(k = 1:N, .combine = cbind, .packages="fdasrvfSpatReg") %dopar% {
     gam0 <- optimum.reparam(qhat[, k], time, q[, k], time, lambda = lambda)
   }
 
@@ -222,7 +222,7 @@ align_fPCA <- function(f, time,
     qhat <- matrix(mq_c, nrow = M, ncol = N) + tmp
 
     # Matching Step
-    gam_k <- foreach::foreach(k = 1:N, .combine = cbind, .packages = "fdasrvf") %dopar% {
+    gam_k <- foreach::foreach(k = 1:N, .combine = cbind, .packages = "fdasrvfSpatReg") %dopar% {
       gam0 <- optimum.reparam(qhat[, k], time, q[, k, r], time, lambda = lambda)
     }
     gam[, , r] <- gam_k

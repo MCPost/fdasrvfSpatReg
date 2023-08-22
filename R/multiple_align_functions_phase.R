@@ -79,7 +79,7 @@ multiple_align_functions_phase <- function(f, time, mu, kpp, lambda = 0, pen="ro
   k <- 1
   
   cat(sprintf("Aligning %d functions in SRSF space...\n",N))
-  outfor<-foreach::foreach(k = 1:N, .combine=cbind,.packages='fdasrvf') %dopar% {
+  outfor<-foreach::foreach(k = 1:N, .combine=cbind,.packages='fdasrvfSpatReg') %dopar% {
     if (omethod=="expBayes"){
       gam <- pair_align_functions_expomap(mu, c(f[,k]), time, iter=iter)$gamma
       gam <- gam$y

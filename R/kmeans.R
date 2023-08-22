@@ -178,7 +178,7 @@ kmeans_align <- function(f, time,
     fn <- list()
     fw <- matrix(nrow = L, ncol = M)
     for (k in 1:K) {
-      outfor <- foreach::foreach(n = 1:N, .combine = cbind, .packages = "fdasrvf") %dopar% {
+      outfor <- foreach::foreach(n = 1:N, .combine = cbind, .packages = "fdasrvfSpatReg") %dopar% {
         if (alignment) {
           gam_tmp <- optimum.reparam(
             Q1 = templates.q[, , k], T1 = time,
@@ -260,7 +260,7 @@ kmeans_align <- function(f, time,
       gamI <- SqrtMeanInverse(gamtmp)
 
       fw <- matrix(nrow = L, ncol = M)
-      outfor <- foreach::foreach(n = 1:N1, .combine = cbind, .packages = "fdasrvf") %dopar% {
+      outfor <- foreach::foreach(n = 1:N1, .combine = cbind, .packages = "fdasrvfSpatReg") %dopar% {
         for (l in 1:L) {
           fw[l, ] <- stats::approx(
             x = time,

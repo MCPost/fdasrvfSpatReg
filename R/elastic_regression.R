@@ -115,7 +115,7 @@ elastic.regression <- function(f, y, time, B=NULL, lam=0, df=20, max_itr=20,
     SSE[itr] = sum((y-alpha-int_X)^2)
 
     # find gamma
-    gamma_new<-foreach::foreach(k = 1:N, .combine=cbind,.packages="fdasrvf") %dopar% {
+    gamma_new<-foreach::foreach(k = 1:N, .combine=cbind,.packages="fdasrvfSpatReg") %dopar% {
       gam = regression_warp(beta, time, q[,k], y[k], alpha)
     }
 

@@ -96,7 +96,7 @@ elastic.logistic <- function(f, y, time, B=NULL, df=20, max_itr=20,
 
     # find gamma
     k=1
-    gamma_new<-foreach::foreach(k = 1:N, .combine=cbind,.packages="fdasrvf") %dopar% {
+    gamma_new<-foreach::foreach(k = 1:N, .combine=cbind,.packages="fdasrvfSpatReg") %dopar% {
       gam = logistic_warp(beta, time, q[,k], y[k])
     }
 

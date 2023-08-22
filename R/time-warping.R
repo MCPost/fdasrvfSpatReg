@@ -117,7 +117,7 @@ time_warping <- function(f, time,
   mq <- q[, min_ind]
   mf <- f[, min_ind]
 
-  gam <- foreach::foreach(n = 1:N, .combine = cbind, .packages = "fdasrvf") %dopar% {
+  gam <- foreach::foreach(n = 1:N, .combine = cbind, .packages = "fdasrvfSpatReg") %dopar% {
     gam_tmp <- optimum.reparam(
       Q1 = mq, T1 = time, Q2 = q[, n], T2 = time,
       lambda = lambda, pen = penalty_method, method = optim_method, w = w,
@@ -165,7 +165,7 @@ time_warping <- function(f, time,
       cli::cli_alert_warning("The maximal number of iterations has been reached.")
 
     # Matching Step
-    outfor <- foreach::foreach(n = 1:N, .combine = cbind, .packages='fdasrvf') %dopar% {
+    outfor <- foreach::foreach(n = 1:N, .combine = cbind, .packages='fdasrvfSpatReg') %dopar% {
       gam <- optimum.reparam(
         Q1 = mq[, r], T1 = time, Q2 = q[, n, 1], T2 = time,
         lambda = lambda, pen = penalty_method, method = optim_method, w = w,
@@ -248,7 +248,7 @@ time_warping <- function(f, time,
 
   if (center_warpings) {
     r <- r + 1
-    outfor <- foreach::foreach(n = 1:N, .combine = cbind, .packages = "fdasrvf") %dopar% {
+    outfor <- foreach::foreach(n = 1:N, .combine = cbind, .packages = "fdasrvfSpatReg") %dopar% {
       gam <- optimum.reparam(
         Q1 = mq[, r], T1 = time, Q2 = q[, n, 1], T2 = time,
         lambda = lambda, pen = penalty_method, method = optim_method, w = w,

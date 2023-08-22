@@ -51,7 +51,7 @@ bootTB <- function(f, time, a=.05, p=.99, B=500, no = 5, Nsamp=100, parallel=T){
   cat("Bootstrap Sampling\n")
   k = 1
   pb <- utils::txtProgressBar(0, B, style = 3)
-  outfor <- foreach::foreach(k=1:B, .combine=cbind, .packages=c('fdasrvf','mvtnorm')) %dopar% {
+  outfor <- foreach::foreach(k=1:B, .combine=cbind, .packages=c('fdasrvfSpatReg','mvtnorm')) %dopar% {
     samples <- joint_gauss_model(out.med, Nsamp, no)
     amp <- ampbox_data(samples, alpha = 1 - p)
     ph <- phbox_data(samples, alpha = 1 - p)

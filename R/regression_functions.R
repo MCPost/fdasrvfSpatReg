@@ -82,7 +82,7 @@ mlogit_warp <- function(alpha, beta, time, q, y, max_itr=8000, tol=1e-10,
   for (ii in 1:m2){
     beta1[((ii-1)*m1+1):(ii*m1)] = beta[,ii]
   }
-  output = .Call('mlogit_warp_grad_wrap', PACKAGE = 'fdasrvf', m1, m2, alpha,
+  output = .Call('mlogit_warp_grad_wrap', PACKAGE = 'fdasrvfSpatReg', m1, m2, alpha,
                  beta1, time, gam1, q, y, max_itr, tol, delta, display, gamout);
 
   out = output$gamout
