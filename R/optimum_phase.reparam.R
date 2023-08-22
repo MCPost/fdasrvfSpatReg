@@ -13,8 +13,6 @@
 #'   size `n_points` of its univariate domain.
 #' @param T2 A numeric vector of size `n_points` specifying the grid on which
 #'   the 1st SRSF is evaluated.
-#' @param KPP A numeric matrix of shape `n_points x n_dimensions` specifying the
-#'   kriging predicted phase values of the components.
 #' @param lambda A numeric value specifying the amount of warping. Defaults to
 #'   `0.0`.
 #' @param pen alignment penalty (default="roughness") options are
@@ -46,7 +44,7 @@
 #' @examples
 #' q <- f_to_srvf(simu_data$f, simu_data$time)
 #' gam <- optimum.reparam(q[, 1], simu_data$time, q[, 2], simu_data$time)
-optimum.reparam <- function(Q1,T1,Q2,T2,KPP,
+optimum_phase.reparam <- function(Q1,T1,Q2,T2,KPP,
                             lambda = 0,
                             pen = "roughness",
                             method = c("DP", "DPo", "SIMUL", "DP2", "RBFGS"),

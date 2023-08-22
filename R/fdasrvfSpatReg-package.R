@@ -4,7 +4,7 @@
 #' framework which performs pair-wise and group-wise alignment as well as
 #' modeling using functional component analysis.
 #'
-#' @name fdasrvf
+#' @name fdasrvfSpatReg
 #'
 #' @references Srivastava, A., Wu, W., Kurtek, S., Klassen, E., Marron, J. S.,
 #'   May 2011. Registration of functional data using Fisher-Rao metric,
@@ -51,8 +51,8 @@
 #'   10.1080/00401706.2020.1811156, 2020.
 #'
 #' @docType package
-#' @useDynLib fdasrvf, .registration=TRUE
+#' @useDynLib fdasrvfSpatReg, .registration=TRUE
 #' @importFrom Rcpp sourceCpp
 #' @importFrom foreach %dopar%
-#' @aliases fdasrvf fdasrvf-package
+#' @aliases fdasrvfSpatReg fdasrvfSpatReg-package
 NULL

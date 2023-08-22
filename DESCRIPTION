@@ -1,6 +1,6 @@
-Package: fdasrvf
+Package: fdasrvfSpatReg
 Type: Package
-Title: Elastic Functional Data Analysis
+Title: Spatially penalized Elastic Functional Data Analysis
 Version: 2.0.2
 Date: 2023-05-12
 Authors@R: c(
@@ -13,7 +13,12 @@ Authors@R: c(
            family = "Stamm",
            role = "ctb",
            email = "aymeric.stamm@math.cnrs.fr",
-           comment = c(ORCID = "0000-0002-8725-3654")))
+           comment = c(ORCID = "0000-0002-8725-3654")),
+    person(given = "Christopher",
+           family = "Postzich",
+           role = "ctb",
+           email = "christopher.postzich@gmail.com")
+            )
 Description: Performs alignment, PCA, and modeling of multidimensional and 
     unidimensional functions using the square-root velocity framework 
     (Srivastava et al., 2011 <arXiv:1103.3817> and Tucker et al., 2014 
