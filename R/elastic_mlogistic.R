@@ -107,7 +107,7 @@ elastic.mlogistic <- function(f, y, time, B=NULL, df=20, max_itr=20,
 
     # find gamma
     k=1
-    gamma_new<-foreach::foreach(k = 1:N, .combine=cbind,.packages="fdasrvf") %dopar% {
+    gamma_new<-foreach::foreach(k = 1:N, .combine=cbind,.packages="fdasrvfSpatReg") %dopar% {
       gam = mlogit_warp(alpha, beta, time, q[,k], Y[k,])
     }
 
