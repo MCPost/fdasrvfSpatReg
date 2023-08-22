@@ -13,7 +13,7 @@ function_mean_bayes(f, time, times = 5, group = 1:dim(f)[2], showplot = TRUE)
 
 \item{times}{factor of length of subsample points to look at (default = 5)}
 
-\item{group}{(defaults \code{1:dim(f)[2]})}
+\item{group}{(defaults `1:dim(f)[2]`)}
 
 \item{showplot}{shows plots of functions (default = T)}
 }
@@ -39,7 +39,7 @@ This function calculates karcher mean of functions using Bayesian method
 }
 \references{
 Cheng, W., Dryden, I. L., and Huang, X. (2016). Bayesian
-registration of functions and curves. Bayesian Analysis, 11(2), 447-475.
+  registration of functions and curves. Bayesian Analysis, 11(2), 447-475.
 }
 \concept{srsf alignment}
 \keyword{bayesian}

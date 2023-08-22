@@ -23,69 +23,68 @@ time_warping(
 \eqn{N} curves observed on a grid of size \eqn{M}.}
 
 \item{time}{A numeric vector of length \eqn{M} specifying the common grid on
-which all curves \code{f} have been observed.}
+which all curves `f` have been observed.}
 
-\item{lambda}{A numeric value specifying the elasticity. Defaults to \code{0.0}.}
+\item{lambda}{A numeric value specifying the elasticity. Defaults to `0.0`.}
 
 \item{penalty_method}{A string specifying the penalty term used in the
 formulation of the cost function to minimize for alignment. Choices are
-\code{"roughness"} which uses the norm of the second derivative, \code{"geodesic"}
-which uses the geodesic distance to the identity and \code{"norm"} which uses
-the Euclidean distance to the identity. Defaults to \code{"roughness"}.}
+`"roughness"` which uses the norm of the second derivative, `"geodesic"`
+which uses the geodesic distance to the identity and `"norm"` which uses
+the Euclidean distance to the identity. Defaults to `"roughness"`.}
 
 \item{centroid_type}{A string specifying the type of centroid to align to.
-Choices are \code{"mean"} or \code{"median"}. Defaults to \code{"mean"}.}
+Choices are `"mean"` or `"median"`. Defaults to `"mean"`.}
 
 \item{center_warpings}{A boolean specifying whether to center the estimated
-warping functions. Defaults to \code{TRUE}.}
+warping functions. Defaults to `TRUE`.}
 
 \item{smooth_data}{A boolean specifying whether to smooth curves using a box
-filter. Defaults to \code{FALSE}.}
+filter. Defaults to `FALSE`.}
 
 \item{sparam}{An integer value specifying the number of times to apply the
-box filter. Defaults to \code{25L}. This is used only when \code{smooth_data = TRUE}.}
+box filter. Defaults to `25L`. This is used only when `smooth_data = TRUE`.}
 
 \item{parallel}{A boolean specifying whether to run calculations in parallel.
-Defaults to \code{FALSE}.}
+Defaults to `FALSE`.}
 
 \item{optim_method}{A string specifying the algorithm used for optimization.
-Choices are \code{"DP"}, \code{"DP2"} and \code{"RBFGS"}. Defaults to \code{"DP"}.}
+Choices are `"DP"`, `"DP2"` and `"RBFGS"`. Defaults to `"DP"`.}
 
 \item{max_iter}{An integer value specifying the maximum number of iterations.
-Defaults to \code{20L}.}
+Defaults to `20L`.}
 }
 \value{
-An object of class \code{fdawarp} which is a list with the following
-components:
-\itemize{
-\item \code{time}: a numeric vector of length \eqn{M} storing the original grid;
-\item \code{f0}: a numeric matrix of shape \eqn{M \times N} storing the original
+An object of class `fdawarp` which is a list with the following
+  components:
+
+- `time`: a numeric vector of length \eqn{M} storing the original grid;
+- `f0`: a numeric matrix of shape \eqn{M \times N} storing the original
 sample of \eqn{N} functions observed on a grid of size \eqn{M};
-\item \code{q0}: a numeric matrix of the same shape as \code{f0} storing the original
+- `q0`: a numeric matrix of the same shape as `f0` storing the original
 SRSFs;
-\item \code{fn}: a numeric matrix of the same shape as \code{f0} storing the aligned
+- `fn`: a numeric matrix of the same shape as `f0` storing the aligned
 functions;
-\item \code{qn}: a numeric matrix of the same shape as \code{f0} storing the aligned SRSFs;
-\item \code{fmean}: a numeric vector of length \eqn{M} storing the mean or median
+- `qn`: a numeric matrix of the same shape as `f0` storing the aligned SRSFs;
+- `fmean`: a numeric vector of length \eqn{M} storing the mean or median
 curve;
-\item \code{mqn}: a numeric vector of length \eqn{M} storing the mean or median SRSF;
-\item \code{warping_functions}: a numeric matrix of the same shape as \code{f0} storing the
+- `mqn`: a numeric vector of length \eqn{M} storing the mean or median SRSF;
+- `warping_functions`: a numeric matrix of the same shape as `f0` storing the
 estimated warping functions;
-\item \code{original_variance}: a numeric value storing the variance of the original
+- `original_variance`: a numeric value storing the variance of the original
 sample;
-\item \code{amplitude_variance}: a numeric value storing the variance in amplitude of
+- `amplitude_variance`: a numeric value storing the variance in amplitude of
 the aligned sample;
-\item \code{phase_variance}: a numeric value storing the variance in phase of the
+- `phase_variance`: a numeric value storing the variance in phase of the
 aligned sample;
-\item \code{qun}: a numeric vector of maximum length \code{max_iter + 2} storing the values
+- `qun`: a numeric vector of maximum length `max_iter + 2` storing the values
 of the cost function after each iteration;
-\item \code{lambda}: the input parameter \code{lambda} which specifies the elasticity;
-\item \code{centroid_type}: the input centroid type;
-\item \code{optim_method}: the input optimization method;
-\item \code{inverse_average_warping_function}: the inverse of the mean estimated
+- `lambda`: the input parameter `lambda` which specifies the elasticity;
+- `centroid_type`: the input centroid type;
+- `optim_method`: the input optimization method;
+- `inverse_average_warping_function`: the inverse of the mean estimated
 warping function;
-\item \code{rsamps}: TO DO.
-}
+- `rsamps`: TO DO.
 }
 \description{
 This function aligns a collection of \eqn{1}-dimensional curves that are
@@ -98,12 +97,12 @@ observed on the same grid.
 }
 \references{
 Srivastava, A., Wu, W., Kurtek, S., Klassen, E., Marron, J. S.,
-May 2011. Registration of functional data using Fisher-Rao metric,
-arXiv:1103.3817v2.
+  May 2011. Registration of functional data using Fisher-Rao metric,
+  arXiv:1103.3817v2.
 
 Tucker, J. D., Wu, W., Srivastava, A., Generative models for
-functional data using phase and amplitude Separation, Computational
-Statistics and Data Analysis (2012), 10.1016/j.csda.2012.12.001.
+  functional data using phase and amplitude Separation, Computational
+  Statistics and Data Analysis (2012), 10.1016/j.csda.2012.12.001.
 }
 \keyword{alignment}
 \keyword{srsf}

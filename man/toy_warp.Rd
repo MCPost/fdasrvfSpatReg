@@ -5,11 +5,9 @@
 \alias{toy_warp}
 \title{Aligned Distributed Gaussian Peak Dataset}
 \format{
-\subsection{\code{toy_warp}}{
-
-A list which contains the output of the \code{\link[=time_warping]{time_warping()}} function applied on
-the data set \code{toy_data}.
-}
+## `toy_warp`
+A list which contains the output of the [time_warping()] function applied on
+the data set `toy_data`.
 }
 \usage{
 toy_warp

@@ -5,16 +5,13 @@
 \alias{toy_data}
 \title{Distributed Gaussian Peak Dataset}
 \format{
-\subsection{\code{toy_data}}{
-
+## `toy_data`
 A list with two components:
-\itemize{
-\item \code{f}: A numeric matrix of shape \eqn{101 \times 29} storing a sample of size
+
+- `f`: A numeric matrix of shape \eqn{101 \times 29} storing a sample of size
 \eqn{N = 29} of curves evaluated on a grid of size \eqn{M = 101}.
-\item \code{time}: A numeric vector of size \eqn{M = 101} storing the grid on which
-the curves \code{f} have been evaluated.
-}
-}
+- `time`: A numeric vector of size \eqn{M = 101} storing the grid on which
+the curves `f` have been evaluated.
 }
 \usage{
 toy_data

@@ -5,14 +5,11 @@
 \alias{im}
 \title{Example Image Data set}
 \format{
-\subsection{\code{im}}{
-
+## `im`
 A list with two components:
-\itemize{
-\item \code{I1}: A numeric matrix of shape \eqn{64 \times 64} storing the 1st image;
-\item \code{I2}: A numeric matrix of shape \eqn{64 \times 64} storing the 2nd image.
-}
-}
+
+- `I1`: A numeric matrix of shape \eqn{64 \times 64} storing the 1st image;
+- `I2`: A numeric matrix of shape \eqn{64 \times 64} storing the 2nd image.
 }
 \usage{
 im

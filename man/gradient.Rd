@@ -8,37 +8,36 @@ gradient(f, binsize, multidimensional = FALSE)
 }
 \arguments{
 \item{f}{Either a numeric vector of a numeric matrix or a numeric array
-specifying the curve(s) that need to be differentiated.
-\itemize{
-\item If a vector, it must be of shape \eqn{M} and it is interpreted as a
-single \eqn{1}-dimensional curve observed on a grid of size \eqn{M}.
-\item If a matrix and \code{multidimensional == FALSE}, it must be of shape
-\eqn{M \times N}. In this case, it is interpreted as a sample of \eqn{N}
-curves observed on a grid of size \eqn{M}, unless \eqn{M = 1} in which case
-it is interpreted as a single \eqn{1}-dimensional curve observed on a grid
-of size \eqn{M}.
-\item If a matrix and \code{multidimensional == TRUE},it must be of shape
-\eqn{L \times M} and it is interpreted as a single \eqn{L}-dimensional
-curve observed on a grid of size \eqn{M}.
-\item If a 3D array, it must be of shape \eqn{L \times M \times N} and it is
-interpreted as a sample of \eqn{N} \eqn{L}-dimensional curves observed on a
-grid of size \eqn{M}.
-}}
+  specifying the curve(s) that need to be differentiated.
+
+  - If a vector, it must be of shape \eqn{M} and it is interpreted as a
+  single \eqn{1}-dimensional curve observed on a grid of size \eqn{M}.
+  - If a matrix and `multidimensional == FALSE`, it must be of shape
+  \eqn{M \times N}. In this case, it is interpreted as a sample of \eqn{N}
+  curves observed on a grid of size \eqn{M}, unless \eqn{M = 1} in which case
+  it is interpreted as a single \eqn{1}-dimensional curve observed on a grid
+  of size \eqn{M}.
+  - If a matrix and `multidimensional == TRUE`,it must be of shape
+  \eqn{L \times M} and it is interpreted as a single \eqn{L}-dimensional
+  curve observed on a grid of size \eqn{M}.
+  - If a 3D array, it must be of shape \eqn{L \times M \times N} and it is
+  interpreted as a sample of \eqn{N} \eqn{L}-dimensional curves observed on a
+  grid of size \eqn{M}.}
 
 \item{binsize}{A numeric value specifying the size of the bins for computing
 finite differences.}
 
 \item{multidimensional}{A boolean specifying if the curves are
-multi-dimensional. This is useful when \code{f} is provided as a matrix to
+multi-dimensional. This is useful when `f` is provided as a matrix to
 determine whether it is a single multi-dimensional curve or a collection of
-uni-dimensional curves. Defaults to \code{FALSE}.}
+uni-dimensional curves. Defaults to `FALSE`.}
 }
 \value{
-A numeric array of the same shape as the input array \code{f} storing the
-gradient of \code{f} obtained via finite differences.
+A numeric array of the same shape as the input array `f` storing the
+  gradient of `f` obtained via finite differences.
 }
 \description{
-This function computes the gradient of \code{f} using finite differences.
+This function computes the gradient of `f` using finite differences.
 }
 \examples{
 out <- gradient(simu_data$f[, 1], mean(diff(simu_data$time)))

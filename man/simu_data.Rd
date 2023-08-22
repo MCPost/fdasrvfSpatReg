@@ -5,16 +5,13 @@
 \alias{simu_data}
 \title{Simulated two Gaussian Dataset}
 \format{
-\subsection{\code{simu_data}}{
-
+## `simu_data`
 A list with 2 components:
-\itemize{
-\item \code{f}: A numeric matrix of shape \eqn{101 \times 21} storing a sample of size
+
+- `f`: A numeric matrix of shape \eqn{101 \times 21} storing a sample of size
 \eqn{N = 21} of curves evaluated on a grid of size \eqn{M = 101}.
-\item \code{time}: A numeric vector of size \eqn{M = 101} storing the grid on which
-the curves \code{f} have been evaluated.
-}
-}
+- `time`: A numeric vector of size \eqn{M = 101} storing the grid on which
+the curves `f` have been evaluated.
 }
 \usage{
 simu_data
@@ -22,7 +19,7 @@ simu_data
 \description{
 A functional dataset where the individual functions are given by: \eqn{y_i(t)
 = z_{i,1} e^{-(t-1.5)^2/2} + z_{i,2}e^{-(t+1.5)^2/2}}, \eqn{t \in [-3, 3],
-~i=1,2,\dots, 21}, where \eqn{z_{i,1}} and \eqn{z_{i,2}} are \emph{i.i.d.} normal
+~i=1,2,\dots, 21}, where \eqn{z_{i,1}} and \eqn{z_{i,2}} are *i.i.d.* normal
 with mean one and standard deviation 0.25. Each of these functions is then
 warped according to: \eqn{\gamma_i(t) = 6({e^{a_i(t+3)/6} -1 \over e^{a_i} -
 1}) - 3} if  \eqn{a_i \neq 0}, otherwise \eqn{\gamma_i = \gamma_{id}}

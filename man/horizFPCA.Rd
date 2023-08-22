@@ -7,7 +7,7 @@
 horizFPCA(warp_data, no, ci = c(-1, 0, 1), showplot = TRUE)
 }
 \arguments{
-\item{warp_data}{fdawarp object from \link{time_warping} of aligned data}
+\item{warp_data}{fdawarp object from [time_warping] of aligned data}
 
 \item{no}{number of principal components to extract}
 
@@ -32,8 +32,8 @@ hfpca <- horizFPCA(simu_warp, no = 3)
 }
 \references{
 Tucker, J. D., Wu, W., Srivastava, A.,
-Generative Models for Function Data using Phase and Amplitude Separation,
-Computational Statistics and Data Analysis (2012), 10.1016/j.csda.2012.12.001.
+ Generative Models for Function Data using Phase and Amplitude Separation,
+ Computational Statistics and Data Analysis (2012), 10.1016/j.csda.2012.12.001.
 }
 \keyword{alignment}
 \keyword{srvf}

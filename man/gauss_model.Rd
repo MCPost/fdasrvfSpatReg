@@ -7,7 +7,7 @@
 gauss_model(warp_data, n = 1, sort_samples = FALSE)
 }
 \arguments{
-\item{warp_data}{fdawarp object from \link{time_warping} of aligned data}
+\item{warp_data}{fdawarp object from [time_warping] of aligned data}
 
 \item{n}{number of random samples (n = 1)}
 
@@ -27,7 +27,7 @@ out1 <- gauss_model(simu_warp, n = 10)
 }
 \references{
 Tucker, J. D., Wu, W., Srivastava, A.,
-Generative Models for Function Data using Phase and Amplitude Separation,
-Computational Statistics and Data Analysis (2012), 10.1016/j.csda.2012.12.001.
+ Generative Models for Function Data using Phase and Amplitude Separation,
+ Computational Statistics and Data Analysis (2012), 10.1016/j.csda.2012.12.001.
 }
 \keyword{pca}

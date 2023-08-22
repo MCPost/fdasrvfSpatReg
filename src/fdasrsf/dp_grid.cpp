@@ -15,41 +15,90 @@ double dp_costs(
     size_t dp_nbhd_count, Pair *dp_nbhd )
 {
   int sr, sc;  /* source row and column */
-        int tr, tc;  /* target row and column */
-        double w, cand_cost;
-        int i;
+  int tr, tc;  /* target row and column */
+  double w, cand_cost;
+  int i;
 
-        E[0] = 0.0;
-        for ( i=1; i<ntv1; E[i++]=INFINITY );
-        for ( i=1; i<ntv2; E[ntv1*i++]=INFINITY );
+  E[0] = 0.0;
+  for ( i=1; i<ntv1; E[i++]=INFINITY );
+  for ( i=1; i<ntv2; E[ntv1*i++]=INFINITY );
 
-        for ( tr=1; tr<ntv2; ++tr )
+  for ( tr=1; tr<ntv2; ++tr )
+  {
+    for ( tc=1; tc<ntv1; ++tc )
+    {
+      E[ntv1*tr + tc] = INFINITY;
+
+      for ( i=0; i<dp_nbhd_count; ++i )
+      {
+        sr = tr - dp_nbhd[i][0];
+        sc = tc - dp_nbhd[i][1];
+
+        if ( sr < 0 || sc < 0 ) continue;
+
+        w = dp_edge_weight( Q1, T1, nsamps1, Q2, T2, nsamps2, dim,
+                            tv1[sc], tv1[tc], tv2[sr], tv2[tr], idxv1[sc], idxv2[sr], lam );
+
+        cand_cost = E[ntv1*sr+sc] + w;
+        if ( cand_cost < E[ntv1*tr+tc] )
         {
-          for ( tc=1; tc<ntv1; ++tc )
-          {
-            E[ntv1*tr + tc] = INFINITY;
-
-            for ( i=0; i<dp_nbhd_count; ++i )
-            {
-              sr = tr - dp_nbhd[i][0];
-              sc = tc - dp_nbhd[i][1];
-
-              if ( sr < 0 || sc < 0 ) continue;
-
-              w = dp_edge_weight( Q1, T1, nsamps1, Q2, T2, nsamps2, dim,
-                                  tv1[sc], tv1[tc], tv2[sr], tv2[tr], idxv1[sc], idxv2[sr], lam );
-
-              cand_cost = E[ntv1*sr+sc] + w;
-              if ( cand_cost < E[ntv1*tr+tc] )
-              {
-                E[ntv1*tr+tc] = cand_cost;
-                P[ntv1*tr+tc] = ntv1*sr + sc;
-              }
-            }
-          }
+          E[ntv1*tr+tc] = cand_cost;
+          P[ntv1*tr+tc] = ntv1*sr + sc;
         }
+      }
+    }
+  }
 
-        return E[ntv1*ntv2-1];
+  return E[ntv1*ntv2-1];
+}
+
+
+double dp_costs_2(
+    double *Q1, double *T1, int nsamps1,
+    double *Q2, double *T2, int nsamps2,
+    int dim,
+    double *tv1, int *idxv1, int ntv1,
+    double *tv2, int *idxv2, int ntv2,
+    double *E, int *P, double lam,
+    size_t dp_nbhd_count, Pair *dp_nbhd,
+    double *KPP )
+{
+  int sr, sc;  /* source row and column */
+  int tr, tc;  /* target row and column */
+  double w, cand_cost;
+  int i;
+  
+  E[0] = 0.0;
+  for ( i=1; i<ntv1; E[i++]=INFINITY );
+  for ( i=1; i<ntv2; E[ntv1*i++]=INFINITY );
+  
+  for ( tr=1; tr<ntv2; ++tr )
+  {
+    for ( tc=1; tc<ntv1; ++tc )
+    {
+      E[ntv1*tr + tc] = INFINITY;
+      
+      for ( i=0; i<dp_nbhd_count; ++i )
+      {
+        sr = tr - dp_nbhd[i][0];
+        sc = tc - dp_nbhd[i][1];
+        
+        if ( sr < 0 || sc < 0 ) continue;
+        
+        w = dp_edge_weight_2( Q1, T1, nsamps1, Q2, T2, nsamps2, dim,
+                              tv1[sc], tv1[tc], tv2[sr], tv2[tr], idxv1[sc], idxv2[sr], lam, KPP );
+        
+        cand_cost = E[ntv1*sr+sc] + w;
+        if ( cand_cost < E[ntv1*tr+tc] )
+        {
+          E[ntv1*tr+tc] = cand_cost;
+          P[ntv1*tr+tc] = ntv1*sr + sc;
+        }
+      }
+    }
+  }
+  
+  return E[ntv1*ntv2-1];
 }
 
 
@@ -59,7 +108,7 @@ double dp_edge_weight(
     int dim,
     double a, double b,
     double c, double d,
-    int aidx, int cidx, double lam)
+    int aidx, int cidx, double lam )
 {
   double res = 0.0;
   int Q1idx, Q2idx;
@@ -72,60 +121,137 @@ double dp_edge_weight(
   int i;
 
   Q1idx = aidx; /*dp_lookup( T1, nsamps1, a );*/
-        Q2idx = cidx; /*dp_lookup( T2, nsamps2, c );*/
+  Q2idx = cidx; /*dp_lookup( T2, nsamps2, c );*/
 
-        t1 = a;
-        t2 = c;
+  t1 = a;
+  t2 = c;
 
-        slope = (d-c)/(b-a);
-        rslope = sqrt( slope );
+  slope = (d-c)/(b-a);
+  rslope = sqrt( slope );
 
-        while( t1 < b && t2 < d )
-        {
-          if ( Q1idx > nsamps1-2 || Q2idx > nsamps2-2 ) break;
+  while( t1 < b && t2 < d )
+  {
+    if ( Q1idx > nsamps1-2 || Q2idx > nsamps2-2 ) break;
 
-          /* Find endpoint of current interval */
-          t1nextcand1 = T1[Q1idx+1];
-          t1nextcand2 = a + (T2[Q2idx+1]-c) / slope;
+    /* Find endpoint of current interval */
+    t1nextcand1 = T1[Q1idx+1];
+    t1nextcand2 = a + (T2[Q2idx+1]-c) / slope;
 
-          if ( fabs(t1nextcand1-t1nextcand2) < 1e-6 )
-          {
-            t1next = T1[Q1idx+1];
-            t2next = T2[Q2idx+1];
-            Q1idxnext = Q1idx+1;
-            Q2idxnext = Q2idx+1;
-          } else if ( t1nextcand1 < t1nextcand2 ) {
-            t1next = t1nextcand1;
-            t2next = c + slope * (t1next - a);
-            Q1idxnext = Q1idx+1;
-            Q2idxnext = Q2idx;
-          } else {
-            t1next = t1nextcand2;
-            t2next = T2[Q2idx+1];
-            Q1idxnext = Q1idx;
-            Q2idxnext = Q2idx+1;
-          }
+    if ( fabs(t1nextcand1-t1nextcand2) < 1e-6 )
+    {
+      t1next = T1[Q1idx+1];
+      t2next = T2[Q2idx+1];
+      Q1idxnext = Q1idx+1;
+      Q2idxnext = Q2idx+1;
+    } else if ( t1nextcand1 < t1nextcand2 ) {
+      t1next = t1nextcand1;
+      t2next = c + slope * (t1next - a);
+      Q1idxnext = Q1idx+1;
+      Q2idxnext = Q2idx;
+    } else {
+      t1next = t1nextcand2;
+      t2next = T2[Q2idx+1];
+      Q1idxnext = Q1idx;
+      Q2idxnext = Q2idx+1;
+    }
 
-          if ( t1next > b ) t1next = b;
-          if ( t2next > d ) t2next = d;
+    if ( t1next > b ) t1next = b;
+    if ( t2next > d ) t2next = d;
 
-          /* Get contribution for current interval */
-          dq = 0.0;
-          for ( i=0; i<dim; ++i )
-          {
-            /* Q1 and Q2 are column-major arrays! */
-            dqi = Q1[Q1idx*dim+i] - rslope * Q2[Q2idx*dim+i];
-            dq += dqi*dqi + lam*(1-rslope)*(1-rslope);
-          }
-          res += (t1next - t1) * dq;
+    /* Get contribution for current interval */
+    dq = 0.0;
+    for ( i=0; i<dim; ++i )
+    {
+      /* Q1 and Q2 are column-major arrays! */
+      dqi = Q1[Q1idx*dim+i] - rslope * Q2[Q2idx*dim+i];
+      dq += dqi*dqi + lam*(1-rslope)*(1-rslope);
+    }
+    res += (t1next - t1) * dq;
 
-          t1 = t1next;
-          t2 = t2next;
-          Q1idx = Q1idxnext;
-          Q2idx = Q2idxnext;
-        }
+    t1 = t1next;
+    t2 = t2next;
+    Q1idx = Q1idxnext;
+    Q2idx = Q2idxnext;
+  }
 
-        return res;
+  return res;
+}
+
+
+double dp_edge_weight_2(
+    double *Q1, double *T1, int nsamps1,
+    double *Q2, double *T2, int nsamps2,
+    int dim,
+    double a, double b,
+    double c, double d,
+    int aidx, int cidx, double lam,
+    double *KPP )
+{
+  double res = 0.0;
+  int Q1idx, Q2idx;
+  int Q1idxnext, Q2idxnext;
+  double t1, t2;
+  double t1next, t2next;
+  double t1nextcand1, t1nextcand2;
+  double slope, rslope;
+  double dq, dqi;
+  int i;
+  
+  Q1idx = aidx; /*dp_lookup( T1, nsamps1, a );*/
+  Q2idx = cidx; /*dp_lookup( T2, nsamps2, c );*/
+  
+  t1 = a;
+  t2 = c;
+  
+  slope = (d-c)/(b-a);
+  rslope = sqrt( slope );
+  
+  while( t1 < b && t2 < d )
+  {
+    if ( Q1idx > nsamps1-2 || Q2idx > nsamps2-2 ) break;
+    
+    /* Find endpoint of current interval */
+    t1nextcand1 = T1[Q1idx+1];
+    t1nextcand2 = a + (T2[Q2idx+1]-c) / slope;
+    
+    if ( fabs(t1nextcand1-t1nextcand2) < 1e-6 )
+    {
+      t1next = T1[Q1idx+1];
+      t2next = T2[Q2idx+1];
+      Q1idxnext = Q1idx+1;
+      Q2idxnext = Q2idx+1;
+    } else if ( t1nextcand1 < t1nextcand2 ) {
+      t1next = t1nextcand1;
+      t2next = c + slope * (t1next - a);
+      Q1idxnext = Q1idx+1;
+      Q2idxnext = Q2idx;
+    } else {
+      t1next = t1nextcand2;
+      t2next = T2[Q2idx+1];
+      Q1idxnext = Q1idx;
+      Q2idxnext = Q2idx+1;
+    }
+    
+    if ( t1next > b ) t1next = b;
+    if ( t2next > d ) t2next = d;
+    
+    /* Get contribution for current interval */
+    dq = 0.0;
+    for ( i=0; i<dim; ++i )
+    {
+      /* Q1 and Q2 are column-major arrays! */
+      dqi = Q1[Q1idx*dim+i] - rslope * Q2[Q2idx*dim+i];
+      dq += dqi*dqi + lam*(KPP[Q2idx*dim+i]-rslope)*(KPP[Q2idx*dim+i]-rslope);
+    }
+    res += (t1next - t1) * dq;
+    
+    t1 = t1next;
+    t2 = t2next;
+    Q1idx = Q1idxnext;
+    Q2idx = Q2idxnext;
+  }
+  
+  return res;
 }
 
 
@@ -140,39 +266,39 @@ int dp_build_gamma(
   int p, i;
   int npts;  /* result = length of Tg */
 
-            /* Dry run first, to determine length of Tg */
-            npts = 1;
-            tr = ntv2-1;
-            tc = ntv1-1;
-            while( tr > 0 && tc > 0 )
-            {
-              p = P[tr*ntv1+tc];
-              tr = p / ntv1;
-              tc = p % ntv1;
-              ++npts;
-            }
+  /* Dry run first, to determine length of Tg */
+  npts = 1;
+  tr = ntv2-1;
+  tc = ntv1-1;
+  while( tr > 0 && tc > 0 )
+  {
+    p = P[tr*ntv1+tc];
+    tr = p / ntv1;
+    tc = p % ntv1;
+    ++npts;
+  }
 
-            G[npts-1] = tv2[ntv2-1];
-            T[npts-1] = tv1[ntv1-1];
+  G[npts-1] = tv2[ntv2-1];
+  T[npts-1] = tv1[ntv1-1];
 
-            tr = ntv2-1;
-            tc = ntv1-1;
-            i = npts-2;
-            while( tr > 0 && tc > 0 )
-            {
-              p = P[tr*ntv1+tc];
-              sr = p / ntv1;
-              sc = p % ntv1;
+  tr = ntv2-1;
+  tc = ntv1-1;
+  i = npts-2;
+  while( tr > 0 && tc > 0 )
+  {
+    p = P[tr*ntv1+tc];
+    sr = p / ntv1;
+    sc = p % ntv1;
 
-              G[i] = tv2[sr];
-              T[i] = tv1[sc];
+    G[i] = tv2[sr];
+    T[i] = tv1[sc];
 
-              tr = sr;
-              tc = sc;
-              --i;
-            }
+    tr = sr;
+    tc = sc;
+    --i;
+  }
 
-            return npts;
+  return npts;
 }
 
 

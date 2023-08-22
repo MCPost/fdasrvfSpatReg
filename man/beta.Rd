@@ -5,12 +5,10 @@
 \alias{beta}
 \title{MPEG7 Curve Dataset}
 \format{
-\subsection{\code{beta}}{
-
+## `beta`
 An array of shape \eqn{2 \times 100 \times 65 \times 20} storing a sample of
 \eqn{20} curves from \eqn{R} to \eqn{R^2} distributed in
 \eqn{65} different classes, evaluated on a grid of size \eqn{100}.
-}
 }
 \usage{
 beta

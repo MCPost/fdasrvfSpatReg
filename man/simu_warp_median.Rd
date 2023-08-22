@@ -5,11 +5,9 @@
 \alias{simu_warp_median}
 \title{Aligned Simulated two Gaussian Dataset using Median}
 \format{
-\subsection{\code{simu_warp_median}}{
-
-A list which contains the output of the \code{\link[=time_warping]{time_warping()}} function finding the
-median applied on the data set \code{simu_data}.
-}
+## `simu_warp_median`
+A list which contains the output of the [time_warping()] function finding the
+median applied on the data set `simu_data`.
 }
 \usage{
 simu_warp_median
@@ -17,7 +15,7 @@ simu_warp_median
 \description{
 A functional dataset where the individual functions are given by: \eqn{y_i(t)
 = z_{i,1} e^{-(t-1.5)^2/2} + z_{i,2}e^{-(t+1.5)^2/2}}, \eqn{t \in [-3, 3],
-~i=1,2,\dots, 21}, where \eqn{z_{i,1}} and \eqn{z_{i,2}} are \emph{i.i.d.} normal
+~i=1,2,\dots, 21}, where \eqn{z_{i,1}} and \eqn{z_{i,2}} are *i.i.d.* normal
 with mean one and standard deviation 0.25. Each of these functions is then
 warped according to: \eqn{\gamma_i(t) = 6({e^{a_i(t+3)/6} -1 \over e^{a_i} -
 1}) - 3} if  \eqn{a_i \neq 0}, otherwise \eqn{\gamma_i = \gamma_{id}}

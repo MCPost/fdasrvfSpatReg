@@ -28,7 +28,7 @@ function_group_warp_bayes(
 
 \item{tau}{standard deviation of Normal prior for increment (default ceil(times*.4))}
 
-\item{gp}{number of colors in plots (defaults \code{seq(dim(f)[2])})}
+\item{gp}{number of colors in plots (defaults `seq(dim(f)[2])`)}
 
 \item{showplot}{shows plots of functions (default = T)}
 }
@@ -50,7 +50,7 @@ This function aligns a set of functions using Bayesian SRSF framework
 }
 \references{
 Cheng, W., Dryden, I. L., and Huang, X. (2016). Bayesian
-registration of functions and curves. Bayesian Analysis, 11(2), 447-475.
+  registration of functions and curves. Bayesian Analysis, 11(2), 447-475.
 }
 \concept{srsf alignment}
 \keyword{bayesian}

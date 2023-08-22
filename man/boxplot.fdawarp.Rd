@@ -20,30 +20,30 @@
 \method{boxplot}{phbox}(x, ...)
 }
 \arguments{
-\item{x}{An object of class \code{fdawarp} typically produced by \code{\link[=time_warping]{time_warping()}}
-or of class \code{ampbox} or \code{phbox} typically produced by \code{\link[=boxplot.fdawarp]{boxplot.fdawarp()}}.}
+\item{x}{An object of class `fdawarp` typically produced by [time_warping()]
+or of class `ampbox` or `phbox` typically produced by [boxplot.fdawarp()].}
 
 \item{variability_type}{A string specifying which kind of variability should
-be displayed in the boxplot. Choices are \code{"amplitude"} or \code{"phase"}.
-Defaults to \code{"amplitude"}.}
+be displayed in the boxplot. Choices are `"amplitude"` or `"phase"`.
+Defaults to `"amplitude"`.}
 
 \item{alpha}{A numeric value specifying the quantile value. Defaults to
 \eqn{0.05} which uses the \eqn{95\%} quantile.}
 
 \item{range}{A positive numeric value specifying how far the plot whiskers
 extend out from the box. The whiskers extend to the most extreme data point
-which is no more than \code{range} times the interquartile range from the box.
-Defaults to \code{1.0}.}
+which is no more than `range` times the interquartile range from the box.
+Defaults to `1.0`.}
 
 \item{what}{A string specifying what the function should return. Choices are
-\code{"plot"}, \code{"stats"} or \code{"plot+stats"}. Defaults to \code{"plot"}.}
+`"plot"`, `"stats"` or `"plot+stats"`. Defaults to `"plot"`.}
 
 \item{...}{Unused here.}
 }
 \value{
-If \code{what} contains \code{stats}, a list containing the computed statistics
-necessary for drawing the boxplot. Otherwise, the function simply draws the
-boxplot and no object is returned.
+If `what` contains `stats`, a list containing the computed statistics
+  necessary for drawing the boxplot. Otherwise, the function simply draws the
+  boxplot and no object is returned.
 }
 \description{
 This function computes the required statistics for building up a boxplot of
@@ -52,8 +52,9 @@ separation of phase and amplitude variability, the computed boxplot can focus
 either on amplitude variability or phase variability.
 }
 \details{
-The function \code{\link[=boxplot.fdawarp]{boxplot.fdawarp()}} returns optionally an object of class either
-\code{ampbox} if \code{variability_type = "amplitude"} or \code{phbox} if \code{variability_type = "phase"}. \code{S3} methods specialized for objects of these classes are
+The function [boxplot.fdawarp()] returns optionally an object of class either
+`ampbox` if `variability_type = "amplitude"` or `phbox` if `variability_type
+= "phase"`. `S3` methods specialized for objects of these classes are
 provided as well to avoid re-computation of the boxplot statistics.
 }
 \examples{

@@ -5,16 +5,13 @@
 \alias{growth_vel}
 \title{Berkeley Growth Velocity Dataset}
 \format{
-\subsection{\code{growth_vel}}{
-
+## `growth_vel`
 A list with two components:
-\itemize{
-\item \code{f}: A numeric matrix of shape \eqn{69 \times 93} storing a sample of size
+
+- `f`: A numeric matrix of shape \eqn{69 \times 93} storing a sample of size
 \eqn{N = 93} of curves evaluated on a grid of size \eqn{M = 69}.
-\item \code{time}: A numeric vector of size \eqn{M = 69} storing the grid on which
-the curves \code{f} have been evaluated.
-}
-}
+- `time`: A numeric vector of size \eqn{M = 69} storing the grid on which
+the curves `f` have been evaluated.
 }
 \usage{
 growth_vel

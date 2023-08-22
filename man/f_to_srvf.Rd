@@ -8,34 +8,33 @@ f_to_srvf(f, time, multidimensional = FALSE)
 }
 \arguments{
 \item{f}{Either a numeric vector of a numeric matrix or a numeric array
-specifying the functions that need to be transformed.
-\itemize{
-\item If a vector, it must be of shape \eqn{M} and it is interpreted as a
-single \eqn{1}-dimensional curve observed on a grid of size \eqn{M}.
-\item If a matrix and \code{multidimensional == FALSE}, it must be of shape
-\eqn{M \times N}. In this case, it is interpreted as a sample of \eqn{N}
-curves observed on a grid of size \eqn{M}, unless \eqn{M = 1} in which case
-it is interpreted as a single \eqn{1}-dimensional curve observed on a grid
-of size \eqn{M}.
-\item If a matrix and \code{multidimensional == TRUE},it must be of shape
-\eqn{L \times M} and it is interpreted as a single \eqn{L}-dimensional
-curve observed on a grid of size \eqn{M}.
-\item If a 3D array, it must be of shape \eqn{L \times M \times N} and it is
-interpreted as a sample of \eqn{N} \eqn{L}-dimensional curves observed on a
-grid of size \eqn{M}.
-}}
+  specifying the functions that need to be transformed.
+
+  - If a vector, it must be of shape \eqn{M} and it is interpreted as a
+  single \eqn{1}-dimensional curve observed on a grid of size \eqn{M}.
+  - If a matrix and `multidimensional == FALSE`, it must be of shape
+  \eqn{M \times N}. In this case, it is interpreted as a sample of \eqn{N}
+  curves observed on a grid of size \eqn{M}, unless \eqn{M = 1} in which case
+  it is interpreted as a single \eqn{1}-dimensional curve observed on a grid
+  of size \eqn{M}.
+  - If a matrix and `multidimensional == TRUE`,it must be of shape
+  \eqn{L \times M} and it is interpreted as a single \eqn{L}-dimensional
+  curve observed on a grid of size \eqn{M}.
+  - If a 3D array, it must be of shape \eqn{L \times M \times N} and it is
+  interpreted as a sample of \eqn{N} \eqn{L}-dimensional curves observed on a
+  grid of size \eqn{M}.}
 
 \item{time}{A numeric vector of length \eqn{M} specifying the grid on which
 the curves are evaluated.}
 
 \item{multidimensional}{A boolean specifying if the curves are
-multi-dimensional. This is useful when \code{f} is provided as a matrix to
+multi-dimensional. This is useful when `f` is provided as a matrix to
 determine whether it is a single multi-dimensional curve or a collection of
-uni-dimensional curves. Defaults to \code{FALSE}.}
+uni-dimensional curves. Defaults to `FALSE`.}
 }
 \value{
-A numeric array of the same shape as the input array \code{f} storing the
-SRSFs of the original curves.
+A numeric array of the same shape as the input array `f` storing the
+  SRSFs of the original curves.
 }
 \description{
 This function transforms curves from their original functional space to the
@@ -46,12 +45,12 @@ q <- f_to_srvf(simu_data$f, simu_data$time)
 }
 \references{
 Srivastava, A., Wu, W., Kurtek, S., Klassen, E., Marron, J. S.,
-May 2011. Registration of functional data using Fisher-Rao metric,
-arXiv:1103.3817v2.
+  May 2011. Registration of functional data using Fisher-Rao metric,
+  arXiv:1103.3817v2.
 
 Tucker, J. D., Wu, W., Srivastava, A., Generative models for
-functional data using phase and amplitude Separation, Computational
-Statistics and Data Analysis (2012), 10.1016/j.csda.2012.12.001.
+  functional data using phase and amplitude Separation, Computational
+  Statistics and Data Analysis (2012), 10.1016/j.csda.2012.12.001.
 }
 \keyword{alignment}
 \keyword{srsf}

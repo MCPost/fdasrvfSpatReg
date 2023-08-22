@@ -7,33 +7,32 @@
 phbox_data(warp_median, alpha = 0.05, kp = 1)
 }
 \arguments{
-\item{warp_median}{fdawarp object from \link{time_warping} of aligned data using
+\item{warp_median}{fdawarp object from [time_warping] of aligned data using
 the median.}
 
-\item{alpha}{quantile value (default=.05, i.e., 95\%).}
+\item{alpha}{quantile value (default=.05, i.e., 95%).}
 
 \item{kp}{scalar for outlier cutoff (default=1).}
 }
 \value{
-Returns a \code{phbox} object containing:
-\itemize{
-\item \code{median_x}: median warping function
-\item \code{Q1}: First quartile
-\item \code{Q3}: Second quartile
-\item \code{Q1a}: First quantile based on alpha
-\item \code{Q3a}: Second quantile based on alpha
-\item \code{minn}: minimum extreme function
-\item \code{maxx}: maximum extreme function
-\item \code{outlier_index}: indexes of outlier functions
-}
+Returns a `phbox` object containing:
+
+- `median_x`: median warping function
+- `Q1`: First quartile
+- `Q3`: Second quartile
+- `Q1a`: First quantile based on alpha
+- `Q3a`: Second quantile based on alpha
+- `minn`: minimum extreme function
+- `maxx`: maximum extreme function
+- `outlier_index`: indexes of outlier functions
 }
 \description{
 This function constructs the phase boxplot.
 }
 \references{
 Xie, W., S. Kurtek, K. Bharath, and Y. Sun  (2016). "A geometric
-approach to visualization of variability in functional data." Journal of
-the American Statistical Association in press: 1-34.
+  approach to visualization of variability in functional data." Journal of
+  the American Statistical Association in press: 1-34.
 }
 \keyword{alignment}
 \keyword{boxplot}
