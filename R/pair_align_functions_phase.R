@@ -38,7 +38,7 @@
 #'   f2 = simu_data$f[, 2],
 #'   time = simu_data$time
 #' )
-pair_align_functions_phase <- function(f1, f2, time, lambda=0, pen="roughness",
+pair_align_functions_phase <- function(f1, f2, time, kpp, lambda=0, pen="roughness",
                                        method="DP", w=0.01, iter=2000){
   
   q1 = f_to_srvf(f1, time)
