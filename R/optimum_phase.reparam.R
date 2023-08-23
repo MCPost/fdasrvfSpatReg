@@ -91,7 +91,7 @@ optimum_phase.reparam <- function(Q1,T1,Q2,T2,KPP,
       T <- rep(0, M)
       size <- 0
       ret <- .Call(
-        "DPQ2_2", PACKAGE = "fdasrvf",
+        "DPQ2_2", PACKAGE = "fdasrvfSpatReg",
         Q1, T1, Q2, T2, L, M, M, T1, T2, M, M, G, T, size, lambda, nbhd_dim, KPP
       )
       G <- ret$G[1:ret$size]
@@ -100,7 +100,7 @@ optimum_phase.reparam <- function(Q1,T1,Q2,T2,KPP,
     },
     DPo = {
       gam0 <- .Call(
-        "DPQ", PACKAGE = "fdasrvf",
+        "DPQ", PACKAGE = "fdasrvfSpatReg",
         Q2, Q1, L, M, lambda, pen, 0, rep(0, M)
       )
     },
@@ -123,7 +123,7 @@ optimum_phase.reparam <- function(Q1,T1,Q2,T2,KPP,
       comtime <- rep(0, 5)
       
       out <- .Call(
-        "opt_reparam", PACKAGE = "fdasrvf",
+        "opt_reparam", PACKAGE = "fdasrvfSpatReg",
         C1, C2, M, L, 0.0, TRUE, rotated, isclosed,
         skipm, auto, opt, swap, fopts, comtime
       )
@@ -140,14 +140,14 @@ optimum_phase.reparam <- function(Q1,T1,Q2,T2,KPP,
       comtime <- rep(0, 5)
       
       out <- .Call(
-        "opt_reparam", PACKAGE = "fdasrvf",
+        "opt_reparam", PACKAGE = "fdasrvfSpatReg",
         C1, C2, M, L, w, FALSE, rotated, isclosed,
         skipm, auto, opt, swap, fopts, comtime
       )
       
       if (out$fopts[1] == 1000) {
         out <- .Call(
-          "opt_reparam", PACKAGE = "fdasrvf",
+          "opt_reparam", PACKAGE = "fdasrvfSpatReg",
           C1, C2, M, L, 0.0, TRUE, rotated, isclosed,
           skipm, auto, opt, swap, fopts, comtime
         )
