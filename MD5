@@ -51,7 +51,7 @@ c3f9b948af5cf27e2fda9f987f889555 *man/optimum.reparam.Rd
 1c36505ac376e1ac2629791807717c91 *man/pair_align_functions.Rd
 975d33a521d1782cace5b3e32654335e *man/pair_align_functions_bayes.Rd
 b103dfc3715dff5502bbf315b07526e6 *man/pair_align_functions_expomap.Rd
-f68e58b9eeb2806bc4fe66ba2dc5c867 *man/pair_align_functions_phase.Rd
+f5b9bb46cacab377f50446fa86725d81 *man/pair_align_functions_phase.Rd
 2b1defc7faa4e38b822b0fb7abdfe80a *man/pair_align_image.Rd
 e28d94cd81879b4b68ce5ed1cef029a6 *man/pcaTB.Rd
 23c752ab95e4144f091a18d2ed8d7bff *man/phbox_data.Rd
@@ -122,7 +122,7 @@ c997e128e9e9a97068f6dde25a9cb346 *R/multiple_align_functions_phase.R
 d03bc49ea4dabfbfc1125fe6903fd82a *R/pair_align_functions.R
 3fba80869546a772c745378b2fc17427 *R/pair_align_functions_bayes.R
 c5ea9c625450ee8afc63f9675c9e4874 *R/pair_align_functions_expomap.R
-b5b852007b17e8b84ddbc720d0afc194 *R/pair_align_functions_phase.R
+218e0807cd47e7e40da234c84e86e830 *R/pair_align_functions_phase.R
 ad1aa13abe3db73ee66e93233e15adad *R/pair_align_image.R
 6672a82bbaa2501a65a898785e9ee8dd *R/plot.fdakma.R
 0bd812dba388f2d8123b593ac46c5cd4 *R/plot.fdawarp.R

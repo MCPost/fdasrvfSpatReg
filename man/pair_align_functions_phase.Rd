@@ -8,6 +8,7 @@ pair_align_functions_phase(
   f1,
   f2,
   time,
+  kpp,
   lambda = 0,
   pen = "roughness",
   method = "DP",
@@ -21,6 +22,8 @@ pair_align_functions_phase(
 \item{f2}{function 2}
 
 \item{time}{sample points of functions}
+
+\item{kpp}{kriging phase prediction}
 
 \item{lambda}{controls amount of warping (default = 0)}
 
@@ -36,8 +39,6 @@ and Expo-Map Bayesian ("expBayes")}
 \item{w}{controls LRBFGS (default = 0.01)}
 
 \item{iter}{number of mcmc iterations for mcmc method (default 2000)}
-
-\item{kpp}{kriging phase prediction}
 }
 \value{
 Returns a list containing \item{f2tilde}{aligned f2}
