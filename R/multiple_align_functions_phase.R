@@ -50,7 +50,7 @@ multiple_align_functions_phase <- function(f, time, mu, kpp, lambda = 0, pen="ro
     foreach::registerDoSEQ()
   }
   
-  cat(sprintf("lambda = %5.1f \n",lambda))
+  #cat(sprintf("lambda = %5.1f \n",lambda))
   
   binsize = mean(diff(time))
   eps = .Machine$double.eps
@@ -78,7 +78,7 @@ multiple_align_functions_phase <- function(f, time, mu, kpp, lambda = 0, pen="ro
   mq = tmp$g/sqrt(abs(tmp$g)+eps)
   k <- 1
   
-  cat(sprintf("Aligning %d functions in SRSF space...\n",N))
+  #cat(sprintf("Aligning %d functions in SRSF space...\n",N))
   outfor<-foreach::foreach(k = 1:N, .combine=cbind,.packages='fdasrvfSpatReg') %dopar% {
     if (omethod=="expBayes"){
       gam <- pair_align_functions_expomap(mu, c(f[,k]), time, iter=iter)$gamma
