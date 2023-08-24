@@ -41,7 +41,7 @@
 pair_align_functions_phase <- function(f1, f2, time, kpp, lambda=0, pen="roughness",
                                        method="DP", w=0.01, iter=2000){
   
-  q1 = f_to_srvf(f1, time)
+  q1 = f1 #f_to_srvf(f1, time)
   q2 = f_to_srvf(f2, time)
   if (method=="dBayes"){
     gam <- pair_align_functions_bayes(f1, f2, time, iter=iter)$gam_a
